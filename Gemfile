@@ -15,8 +15,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem 'devise', '~> 4.9', '>= 4.9.2'
-gem "devise-i18n"
-gem "devise-bootstrap5"
+gem 'devise-i18n', '~> 1.11'
+gem 'devise-bootstrap5', '~> 0.1.3'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
