@@ -231,8 +231,8 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9, >= 4.9.2)
-  devise-bootstrap5
-  devise-i18n
+  devise-bootstrap5 (~> 0.1.3)
+  devise-i18n (~> 1.11)
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
