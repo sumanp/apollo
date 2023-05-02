@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_school, only: %i[ show edit update destroy ]
 
   # GET /schools or /schools.json
@@ -12,7 +13,7 @@ class SchoolsController < ApplicationController
 
   # GET /schools/new
   def new
-    @school = School.new
+    @school = current_user.schools.new
   end
 
   # GET /schools/1/edit
@@ -21,7 +22,7 @@ class SchoolsController < ApplicationController
 
   # POST /schools or /schools.json
   def create
-    @school = School.new(school_params)
+    @school = current_user.schools.new(school_params)
 
     respond_to do |format|
       if @school.save
