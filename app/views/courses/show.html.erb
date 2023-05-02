@@ -15,12 +15,12 @@
     <h4>Batches</h4> 
   </div>
   <div class="col-md-4">
-    <%= link_to "New Batch", new_school_path, class: "btn btn-primary" %>
+    <%= link_to "New Batch", new_school_course_batch_path(@course.school, @course), class: "btn btn-primary" %>
   </div>
 </div>
 
-  <% @course.batches.each do |batches| %>
-    <p> <%= batches.name %> | <%= link_to "Enroll", "#" %> </p>
+  <% @course.batches.each do |batch| %>
+    <p> <%= link_to batch.name, school_course_batch_path(@course.school, @course, batch) %> | <%= link_to "Enroll", new_school_course_batch_path(@course.school, @course) %> </p>
     
   <% end %>
 </div>

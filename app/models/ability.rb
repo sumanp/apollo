@@ -9,6 +9,7 @@ class Ability
     elsif user.school_admin?
       can :update, School, user: user
       can :manage, Course
+      can :manage, Batch
     else
       can :read, :all
     end
