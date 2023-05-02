@@ -1,5 +1,4 @@
 class Batch < ApplicationRecord
-  belongs_to :user
   belongs_to :course
 
   def name
