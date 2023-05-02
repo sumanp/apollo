@@ -1,10 +1,39 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @school %>
+<div class="row">
+  <div class="col-md-4">
+    <img src="https://www.orchidsinternationalschool.com/wp-content/uploads/2022/09/Primary-School-scaled.jpg" class="img-fluid rounded mx-auto d-block" alt="...">
+    <h3><%= @school.name %></h3>
+    <p><strong>Established on</strong> <%= @school.established_at %></p>
+    <p><%= @school.description %></p>
+    <div>
+      <%= link_to "Edit this school", edit_school_path(@school) %> |
+      <%= link_to "Back to schools", schools_path %>
 
-<div>
-  <%= link_to "Edit this school", edit_school_path(@school) %> |
-  <%= link_to "Back to schools", schools_path %>
-
-  <%= button_to "Destroy this school", @school, method: :delete %>
+      <%= button_to "Delete this school", @school, method: :delete %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>Courses</h4> 
+      </div>
+      <div class="col-md-4">
+        <%= link_to "New course", new_school_course_path(@school), class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="row">
+      <% @school.courses.each do |course| %>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://i.ytimg.com/vi/cS8lqPqXSlM/maxresdefault.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= course.title %></h5>
+              <p class="card-text"><%= course.description %></p>
+              <%= link_to "View", school_course_path(@school, course), class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

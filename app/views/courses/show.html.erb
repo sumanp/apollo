@@ -1,10 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @course %>
+<div class="row">
+  <%= render @course %>
+</div>
 
 <div>
-  <%= link_to "Edit this course", edit_school_course_path(@course) %> |
-  <%= link_to "Back to courses", school_courses_path %>
+  <%= link_to "Edit this course", edit_school_course_path(@course.school, @course) %> |
+  <%= link_to "Back to courses", school_path(@course.school) %>
 
-  <%= button_to "Destroy this course", school_course_path(@course.school_id), method: :delete %>
+  <%= button_to "Delete this course", school_course_path(@course.school_id), method: :delete %>
+</div>
+<br><br>
+<div class="row">
+  <div class="row">
+  <div class="col-md-8">
+    <h4>Batches</h4> 
+  </div>
+  <div class="col-md-4">
+    <%= link_to "New Batch", new_school_course_batch_path(@course.school, @course), class: "btn btn-primary" %>
+  </div>
+</div>
+
+  <% @course.batches.each do |batch| %>
+    <p> <%= link_to batch.name, school_course_batch_path(@course.school, @course, batch) %> | <%= link_to "Enroll", new_school_course_batch_path(@course.school, @course) %> </p>
+    
+  <% end %>
 </div>

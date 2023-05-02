@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :schools
   has_many :batches
-  has_many :courses, through: :batches
+  has_many :entrollments
+  has_many :batches, through: :enrollments
 
   ROLES = %w{super_admin school_admin student}
 

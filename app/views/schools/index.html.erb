@@ -1,14 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="row">
+  <div class="col-md-8">
+    <h1>Schools</h1> 
+  </div>
+  <div class="col-md-4">
+    <%= link_to "New school", new_school_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-<h1>Schools</h1>
 
 <div id="schools">
   <% @schools.each do |school| %>
-    <%= render school %>
-    <p>
-      <%= link_to "Show this school", school %>
-    </p>
+    <div id="<%= dom_id school %>" class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://www.orchidsinternationalschool.com/wp-content/uploads/2022/09/Primary-School-scaled.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= school.name %></h5>
+        <p class="card-text"><%= school.description %></p>
+        <%= link_to "View", school, class: "btn btn-info" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New school", new_school_path %>
