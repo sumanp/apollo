@@ -6,5 +6,5 @@
 
 <div>
   <%= link_to "Show this batch", @batch %> |
-  <%= link_to "Back to batches", batches_path %>
+  <%= link_to "Back to batches", school_course_path(@batch.course.school, @batch.course) %>
 </div>
