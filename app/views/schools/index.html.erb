@@ -7,17 +7,17 @@
   </div>
 </div>
 
-
-<div id="schools">
+<div class="row">
   <% @schools.each do |school| %>
-    <div id="<%= dom_id school %>" class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://www.orchidsinternationalschool.com/wp-content/uploads/2022/09/Primary-School-scaled.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%= school.name %></h5>
-        <p class="card-text"><%= school.description %></p>
-        <%= link_to "View", school, class: "btn btn-info" %>
+    <div class="col-md-3">
+      <div id="<%= dom_id school %>" class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://www.orchidsinternationalschool.com/wp-content/uploads/2022/09/Primary-School-scaled.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= school.name %></h5>
+          <p class="card-text"><%= school.description %></p>
+          <%= link_to "View", school, class: "btn btn-info" %>
+        </div>
       </div>
     </div>
   <% end %>
 </div>
-
