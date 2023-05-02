@@ -8,6 +8,7 @@ class BatchesController < ApplicationController
 
   # GET /batches/1 or /batches/1.json
   def show
+    @enrollment = @batch.enrollments.new
   end
 
   # GET /batches/new

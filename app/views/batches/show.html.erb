@@ -1,10 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @batch %>
+
+<%= form_tag(enrollment_requests_path method: :post) do %>
+  <%= hidden_field_tag(:batch_id, @batch.id) %>
+  <%= submit_tag("Enroll", class: "btn btn-primary") %>
+<% end %>
 
 <div>
   <%= link_to "Edit this batch", edit_batch_path(@batch) %> |
   <%= link_to "Back to batches", school_course_path(@batch.course.school, @batch.course) %> 
-
-  <%= button_to "Destroy this batch", @batch, method: :delete %>
 </div>
+
+<br><br><hr>
+<h5>Enrolled students</h5>
+<% @batch.users.each do |user| %>
+  <p> Email: <%= user.email %></p>
+<% end %>
+
+<br><hr>
+<h5>Add students to Batch</h5>
+<%= render "enrollments/form", enrollment: @enrollment %>
