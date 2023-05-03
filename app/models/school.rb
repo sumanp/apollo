@@ -1,4 +1,5 @@
 class School < ApplicationRecord
-  belongs_to :user
+  has_many :school_admins
+  has_many :users, through: :school_admins
   has_many :courses, dependent: :destroy
 end
