@@ -15,6 +15,10 @@
           <% end %>
         </div>
       <% end %>
+
+      <% if can? :manage, @school %>
+        <%= link_to "School Admins", school_school_admins_path(@school) %>
+      <% end %>
   </div>
   <div class="col-md-8">
     <div class="row">

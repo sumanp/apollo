@@ -21,14 +21,13 @@ gem 'cancancan', '~> 3.5'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development do
   gem "web-console"
-end
-
-group :test do
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
 end
