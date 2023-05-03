@@ -7,6 +7,8 @@ RSpec.describe SchoolsController, type: :controller do
 
     context "from logged in user" do
       it "should return 200:OK" do
+        school = FactoryBot.create(:school)
+
         get :index
         expect(response).to have_http_status(:success)
       end
