@@ -1,4 +1,5 @@
 class EnrollmentsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_enrollment, only: %i[ show edit update destroy ]
 
   # GET /enrollments or /enrollments.json
@@ -25,7 +26,8 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to batch_url(@enrollment.batch), notice: "Enrollment was successfully created." }
+        format.html { redirect_to school_course_batch_url(@enrollment.batch.course.school, 
+          @enrollment.batch.course, @enrollment.batch), notice: "Enrollment was successfully created." }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,8 @@ class EnrollmentsController < ApplicationController
   def update
     respond_to do |format|
       if @enrollment.update(enrollment_params)
-        format.html { redirect_to enrollment_url(@enrollment), notice: "Enrollment was successfully updated." }
+        format.html { redirect_to school_course_batch_url(@enrollment.batch.course.school, 
+          @enrollment.batch.course, @enrollment.batch), notice: "Enrollment was successfully updated." }
         format.json { render :show, status: :ok, location: @enrollment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +66,8 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to batch_url(@enrollment.batch), notice: "Enrollment was successfully created." }
+        format.html { redirect_to school_course_batch_url(@enrollment.batch.course.school, 
+          @enrollment.batch.course, @enrollment.batch), notice: "Enrollment was successfully created." }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new, status: :unprocessable_entity }

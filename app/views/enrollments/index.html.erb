@@ -1,12 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Enrollments</h1>
+<h1>Pending Enrollments</h1>
 
 <div id="enrollments">
-  <% @enrollments.each do |enrollment| %>
+  <% @enrollments.where(approval: false).each do |enrollment| %>
     <%= render enrollment %>
     <p>
-      <%= link_to "Show this enrollment", enrollment %>
+      <%= link_to "Approve enrollment", edit_enrollment_path(enrollment) %> |
     </p>
   <% end %>
 </div>

@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    school = School.find(params["school_id"])
+    @course = school.courses.new
   end
 
   # GET /courses/1/edit

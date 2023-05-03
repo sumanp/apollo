@@ -1,21 +1,32 @@
-<%= render @batch %>
-
-<%= form_tag(enrollment_requests_path method: :post) do %>
-  <%= hidden_field_tag(:batch_id, @batch.id) %>
-  <%= submit_tag("Enroll", class: "btn btn-primary") %>
-<% end %>
-
 <div>
-  <%= link_to "Edit this batch", edit_batch_path(@batch) %> |
+  <% if can? :manage, @batch %>
+    <%= link_to "Edit this batch", edit_school_course_batch_path(@batch.course.school, @batch.course, @batch) %> |
+  <% end %>
   <%= link_to "Back to batches", school_course_path(@batch.course.school, @batch.course) %> 
 </div>
+<br>
+<%= render @batch %>
+
+<% if current_user.enrolled?(@batch)%>
+  <button type="button" class="btn btn-lg btn-primary" disabled>Enrolled</button>
+<% elsif current_user.pending_enrollment_approval?(@batch) %>
+    <button type="button" class="btn btn-lg btn-primary" disabled>Pending Approval</button>
+<% else %>
+  <%= form_tag(enrollment_requests_path method: :post) do %>
+    <%= hidden_field_tag(:batch_id, @batch.id) %>
+    <%= submit_tag("Enroll", class: "btn btn-primary") %>
+  <% end %>
+<% end %>
 
 <br><br><hr>
 <h5>Enrolled students</h5>
-<% @batch.users.each do |user| %>
-  <p> Email: <%= user.email %></p>
+<% @batch.enrollments.where(approval: true).each do |enrollment| %>
+  <p> Email: <%= enrollment.user.email %></p>
 <% end %>
 
-<br><hr>
-<h5>Add students to Batch</h5>
-<%= render "enrollments/form", enrollment: @enrollment %>
+<% if can? :manage, @batch %>
+  <br><hr>
+  <h5>Add students to Batch</h5>
+  <%= render "enrollments/form", enrollment: @enrollment %>
+<% end %>
+
