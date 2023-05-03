@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   post "/enrollment_requests", to: "enrollments#enroll", as: "enrollment_requests"
-  resources :enrollments, except: :show
+  resources :enrollments, except: [:show, :new]
   resources :schools do
     resources :courses, except: :index do
       resources :batches, except: :index
