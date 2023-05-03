@@ -5,12 +5,14 @@
     <h3><%= @school.name %></h3>
     <p><strong>Established on</strong> <%= @school.established_at %></p>
     <p><%= @school.description %></p>
-      <% if can? :manage, @school %>
+      <% if can? :update, @school %>
         <div>
           <%= link_to "Edit this school", edit_school_path(@school) %> |
           <%= link_to "Back to schools", schools_path %>
-
-          <%= button_to "Delete this school", @school, method: :delete %>
+          </br>
+          <% if can? :destory, @school %>
+            <%= button_to "Delete this school", @school, method: :delete %>
+          <% end %>
         </div>
       <% end %>
   </div>

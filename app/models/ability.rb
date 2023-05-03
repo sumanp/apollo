@@ -7,13 +7,13 @@ class Ability
     if user.super_admin?
       can :manage, :all
     elsif user.school_admin?
-      can :manage, School, user: user
-      can :manage, Course
-      can :manage, Batch
+      can [:read, :update], School, user: user
+      can :manage, Course, school: { user_id: user.id }
+      can :manage, Batch, course: { school: { user_id: use.id } }
       can :manage, Enrollment
     else
       can :read, :all
-      can :manage, Enrollment
+      can :enroll, Enrollment
     end
   end
 end
