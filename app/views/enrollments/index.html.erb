@@ -5,7 +5,9 @@
     <%= render enrollment %>
     <p>
       <%= link_to "Approve enrollment", edit_enrollment_path(enrollment) %> |
+      <%= button_to "Deny enrollment", enrollment_path(enrollment), method: :delete %>
     </p>
+    <hr>
   <% end %>
 </div>
 
