@@ -22,7 +22,7 @@
             <%= link_to "Schools", schools_path, class: "nav-link" %>
           </li>
           <% if current_user %>
-            <% if current_user.super_admin? || current_user.school_admin? %>
+            <% if current_user.super_admin? %>
               <li class="nav-item">
                 <%= link_to "Enrollments", enrollments_path, class: "nav-link" %>
               </li>
