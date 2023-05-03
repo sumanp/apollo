@@ -20,8 +20,8 @@
 
 <br><br><hr>
 <h5>Enrolled students</h5>
-<% @batch.users.each do |user| %>
-  <p> Email: <%= user.email %></p>
+<% @batch.enrollments.where(approval: true).each do |enrollment| %>
+  <p> Email: <%= enrollment.user.email %></p>
 <% end %>
 
 <% if can? :manage, @batch %>
