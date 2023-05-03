@@ -4,10 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :schools, through: :school_admins
-  has_many :batches
-  has_many :entrollments
-  has_many :batches, through: :enrollments
+  has_many :schools, through: :school_admins, dependent: :destroy
+  has_many :entrollments, dependent: :destroy
+  has_many :batches, through: :enrollments, dependent: :destroy
 
   ROLES = %w{super_admin school_admin student}
 
