@@ -16,4 +16,16 @@ class User < ApplicationRecord
       role == role_name
     end
   end
+
+  def enrolled?(batch)
+    enrollment = batch.enrollments.where(user_id: self.id).last
+    return true if batch.users.where(id: self.id).present? && enrollment.present? && enrollment.approval
+    false
+  end
+
+  def pending_enrollment_approval?(batch)
+    enrollment = batch.enrollments.where(user_id: self.id).last
+    return true if enrollment.present? && !enrollment.approval
+    false
+  end
 end

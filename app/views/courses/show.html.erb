@@ -1,25 +1,28 @@
+<%= link_to "Back to courses", school_path(@course.school) %>
 <div class="row">
   <%= render @course %>
 </div>
-
-<div>
-  <%= link_to "Edit this course", edit_school_course_path(@course.school, @course) %> |
-  <%= link_to "Back to courses", school_path(@course.school) %>
-
-  <%= button_to "Delete this course", school_course_path(@course.school_id), method: :delete %>
-</div>
+  <div>
+    <% if can? :manage, @course %>
+      <%= link_to "Edit this course", edit_school_course_path(@course.school, @course) %>
+      <%= button_to "Delete this course", school_course_path(@course.school_id), method: :delete %>
+    <% end %>
+  </div>
 <br><br><hr>
+
 <div class="row">
   <div class="row">
-  <div class="col-md-10">
-    <h4>Batches</h4> 
+    <div class="col-md-10">
+      <h4>Batches</h4> 
+    </div>
+    <% if can? :manage, @course %>
+      <div class="col-md-2">
+        <%= link_to "New Batch", new_school_course_batch_path(@course.school, @course), class: "btn btn-info" %>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-2">
-    <%= link_to "New Batch", new_batch_path(), class: "btn btn-info" %>
-  </div>
-</div>
 
   <% @course.batches.each do |batch| %>
-    <p><%= link_to batch.name, batch_path(batch) %> </p>
+    <p><%= link_to batch.name, school_course_batch_path(@course.school, @course, batch) %> </p>
   <% end %>
 </div>

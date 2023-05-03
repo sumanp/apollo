@@ -5,22 +5,26 @@
     <h3><%= @school.name %></h3>
     <p><strong>Established on</strong> <%= @school.established_at %></p>
     <p><%= @school.description %></p>
-    <div>
-      <%= link_to "Edit this school", edit_school_path(@school) %> |
-      <%= link_to "Back to schools", schools_path %>
+      <% if can? :manage, @school %>
+        <div>
+          <%= link_to "Edit this school", edit_school_path(@school) %> |
+          <%= link_to "Back to schools", schools_path %>
 
-      <%= button_to "Delete this school", @school, method: :delete %>
-    </div>
+          <%= button_to "Delete this school", @school, method: :delete %>
+        </div>
+      <% end %>
   </div>
   <div class="col-md-8">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-10">
         <h4>Courses</h4> 
       </div>
-      <div class="col-md-4">
-        <%= link_to "New course", new_school_course_path(@school), class: "btn btn-primary" %>
-      </div>
-    </div>
+        <% if can? :manage, @school %>
+          <div class="col-md-2">
+            <%= link_to "New course", new_school_course_path(@school), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+    </div><br>
     <div class="row">
       <% @school.courses.each do |course| %>
         <div class="col-md-4">

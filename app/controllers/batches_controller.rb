@@ -1,4 +1,5 @@
 class BatchesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_batch, only: %i[ show edit update destroy ]
 
   # GET /batches or /batches.json
@@ -66,6 +67,6 @@ class BatchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def batch_params
-      params.require(:batch).permit(:start_at, :end_at, :course_id)
+      params.permit(:start_at, :end_at, :course_id)
     end
 end

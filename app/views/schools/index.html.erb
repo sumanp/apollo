@@ -2,9 +2,11 @@
   <div class="col-md-8">
     <h1>Schools</h1> 
   </div>
-  <div class="col-md-4">
-    <%= link_to "New school", new_school_path, class: "btn btn-primary" %>
-  </div>
+  <% if can? :manage, @schools %>
+    <div class="col-md-4">
+      <%= link_to "New school", new_school_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
 
 <div class="row">
